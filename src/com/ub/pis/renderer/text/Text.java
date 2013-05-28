@@ -9,6 +9,7 @@
  * Integrat de Software' en la Universidad de Barcelona por los estudiantes                       *
  * Pablo Martínez Martínez, Albert Folch, Xavi Moreno y Aaron Negrín.                             *
  **************************************************************************************************/
+
 package com.ub.pis.renderer.text;
 
 import android.graphics.Bitmap;
