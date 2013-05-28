@@ -55,9 +55,9 @@
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="50dp"
+        android:layout_margin="10dp"
         app:cooldown="500"/>
-    
+    <!--
     <com.ub.pis.views.AttackButton
         android:id="@+id/ability1"
         android:layout_width="65dp"
@@ -82,7 +82,7 @@
         android:layout_alignTop="@+id/ability2"
         android:layout_toLeftOf="@+id/ability2"
         app:cooldown="10000" />
-    
+        -->
     <com.ub.pis.views.MyLifeProgressBar
             android:id="@+id/life_progress"
             style="?android:attr/progressBarStyleHorizontal"
@@ -91,7 +91,9 @@
             android:layout_above="@+id/buttonatck"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_margin="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="7dp"
             android:progressDrawable="@anim/my_life_progress_clip"
             android:background="@drawable/my_life_progress_background"/>
     

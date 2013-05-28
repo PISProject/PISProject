@@ -46,7 +46,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 
     private JoystickView joystick;
 	private AttackButton attckButton;
-	private AttackButton[] spells;
+	//private AttackButton[] spells;
 	private Button pauseButton;
 	//private TextView stage;
 	private MyLifeProgressBar lifeProgress;
@@ -82,7 +82,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 		
 		lifeProgress.setProgress(100);
 		
-		spells = new AttackButton[3]; 
+		//spells = new AttackButton[3];
 		
 		
 		
@@ -90,19 +90,21 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 		c.startThreadGame(this);
 		
 		/*Les habilitats van de dreta a esquerra respecte com es veuen en pantalla*/
+        /*
 		int[] refs = {R.id.ability1, R.id.ability2, R.id.ability3};
 		for (int i = 0; i < spells.length; i++) {
 			spells[i] = (AttackButton) findViewById(refs[i]);
-		}
+		}*/
 		//stage = (TextView) findViewById(R.id.stageView);
 		
 		attckButton.setImage(R.drawable.espada2);
 		
 		/*Carregar aquÃ­ les imatges de les tres habilitats que tÃ© un player*/
 		/*Cada player tÃ© habilitats diferents*/
+        /*
 		spells[0].setImage(R.drawable.ojo);
 		spells[1].setImage(R.drawable.fletxa_circular);
-		spells[2].setImage(R.drawable.mort);
+		spells[2].setImage(R.drawable.mort);*/
 		
 		attckButton.setOnClickListener(new OnClickAttackButtonListener() {
 			@Override
@@ -117,6 +119,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 				//Toast.makeText(getApplicationContext(), "button pressed", Toast.LENGTH_SHORT).show();
 			}
 		});
+        /*
 		for (int i = 0; i < spells.length; i++) {
 			spells[i].setOnClickListener(new OnClickAttackButtonListener() {
 				@Override
@@ -124,7 +127,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 					//Toast.makeText(getApplicationContext(), "spell pressed", Toast.LENGTH_SHORT).show();
 				}
 			});
-		}
+		}*/
 		
 		joystick.setOnJoystickListener(new OnJoystickChangeListener() {
 			@Override
