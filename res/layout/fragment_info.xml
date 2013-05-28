@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/highscores_container" 
+    android:padding="5dp"
+    android:orientation="vertical"
+    >
+
+	
+
+        
+        <com.ub.pis.views.CustomTextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registerInstruction"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/text_principal" />
+        
+         <com.ub.pis.views.CustomTextView
+                android:id="@+id/passInstruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/passwordInstruction"
+                android:textColor="@color/text_principal" />
+        
+        <com.ub.pis.views.CustomTextView
+                android:id="@+id/userInstruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userInstruction"
+                android:textColor="@color/text_principal" />
+
+        
+
+</LinearLayout>

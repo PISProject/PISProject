@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"> 
+      
+    
+     <com.ub.pis.views.CustomTextView 
+        android:id="@+id/txtHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/text_principal"
+        android:text="@string/titol_list_view"
+        android:paddingLeft="5dp"/>
+
+</RelativeLayout>

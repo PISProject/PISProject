@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.ub.pis"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/highscores_container">
+    
+    <com.ub.pis.views.DeveloperView
+        android:id="@+id/first_developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        app:image = "@drawable/mach_rojo"
+        app:name = "Aarón Negrín"
+        app:first_sound = "@raw/do_baix"
+        app:second_sound = "@raw/sol"/>
+    
+    <com.ub.pis.views.DeveloperView
+        android:id="@+id/second_developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        app:image = "@drawable/mach_azul"
+        app:name = "Albert Folch"
+        app:first_sound = "@raw/re"
+        app:second_sound = "@raw/la"/>
+    
+    <com.ub.pis.views.DeveloperView
+        android:id="@+id/three_developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        app:image = "@drawable/mach_negro"
+        app:name = "Pablo Martínez"
+        app:first_sound = "@raw/mi"
+        app:second_sound = "@raw/si"/>
+    
+    <com.ub.pis.views.DeveloperView
+        android:id="@+id/four_developer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        app:image = "@drawable/mach_verde"
+        app:name = "Xavi Moreno"
+        app:first_sound = "@raw/fa"
+        app:second_sound = "@raw/do_alto"/>
+        
+</RelativeLayout>

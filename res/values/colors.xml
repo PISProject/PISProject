@@ -1,0 +1,7 @@
+<resources>
+
+  	<color name="black_overlay">#000000</color>
+    <color name="text_principal">#FFFF66</color>
+    <color name="error_color">#FF0000</color>
+
+</resources>

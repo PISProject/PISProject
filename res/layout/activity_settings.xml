@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/castillo"
+    android:orientation="horizontal" 
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <Button
+        android:id="@+id/esp_buto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/cat_buto"
+        android:layout_marginBottom="18dp"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:background="@anim/boto_esp" />
+
+    <Button
+        android:id="@+id/eng_buto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/esp_buto"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:background="@anim/boto_eng" />
+
+    <Button
+        android:id="@+id/cat_buto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/esp_buto"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="19dp"
+        android:background="@anim/boto_cat" />
+    <com.ub.pis.views.CustomTextView
+        android:id="@+id/music_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cat_buto"
+        android:layout_marginTop="20dp"
+        android:text="@string/music" 
+        android:textColor="@color/text_principal"/>
+    
+    <com.ub.pis.views.CustomTextView
+        android:id="@+id/sound_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/music_text"
+        android:layout_marginTop="20dp"
+        android:text="@string/sound" 
+        android:textColor="@color/text_principal"/>
+    <com.ub.pis.views.CustomButton
+        android:id="@+id/sound_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/music_button"
+        android:layout_alignLeft="@+id/music_button"
+        android:layout_alignBaseline="@+id/sound_text"
+        android:background="@anim/boton1"
+        android:textColor="@color/text_principal" />
+
+    <com.ub.pis.views.CustomButton
+        android:id="@+id/music_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/music_text"
+        android:layout_alignBottom="@+id/music_text"
+        android:layout_alignParentRight="true"
+        android:background="@anim/boton1"
+        android:textColor="@color/text_principal" />
+
+    <SeekBar
+        android:id="@+id/volumenMusicaBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/music_text"
+        android:layout_toLeftOf="@+id/music_button"
+        android:layout_toRightOf="@+id/music_text"
+        android:max="100" 
+        />
+
+    <SeekBar
+        android:id="@+id/volumenSonidoBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/sound_text"
+        android:layout_toLeftOf="@+id/music_button"
+        android:layout_toRightOf="@+id/music_text"
+        android:max="100" 
+         />
+
+    <com.ub.pis.views.CustomButton
+        android:id="@+id/developersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/sound_button"
+        android:text="@string/developers" 
+        android:background="@anim/boton1"
+        android:textColor="@color/text_principal"
+        />
+
+</RelativeLayout>

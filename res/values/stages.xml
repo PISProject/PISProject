@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="raid">Raid</string>
+	<string name="downhill">Downhill</string>
+	<string name="afghan">Afghan</string>
+	<string name="hijacked">Hijacked</string>
+	<string name="express">Express</string>
+	<string name="drone">Drone</string>
+	
+	<string-array name="llista_escenaris">
+    <item>@string/raid</item>
+    <item>@string/downhill</item>
+    <item>@string/afghan</item>
+    <item>@string/hijacked</item>
+    <item>@string/express</item>
+    <item>@string/drone</item>
+    
+</string-array>
+	
+</resources>
