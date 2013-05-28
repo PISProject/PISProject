@@ -22,7 +22,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.ub.pis.R;
 import com.ub.pis.clientsupport.Client;
@@ -49,7 +48,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 	private AttackButton attckButton;
 	private AttackButton[] spells;
 	private Button pauseButton;
-	private TextView stage;
+	//private TextView stage;
 	private MyLifeProgressBar lifeProgress;
 	private GameView gameView;
 	
@@ -95,7 +94,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 		for (int i = 0; i < spells.length; i++) {
 			spells[i] = (AttackButton) findViewById(refs[i]);
 		}
-		stage = (TextView) findViewById(R.id.stageView);
+		//stage = (TextView) findViewById(R.id.stageView);
 		
 		attckButton.setImage(R.drawable.espada2);
 		
@@ -131,7 +130,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 			@Override
 			public void onValueChanged(int ang) {
 				angle = ang;
-				stage.setText(ang+"");
+				//stage.setText(ang+"");
 			}
 
 			@Override

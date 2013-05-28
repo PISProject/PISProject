@@ -1,3 +1,15 @@
+<!--
+  ~ Copyright (c) 2013.
+  ~ Machango Fight, the Massive Multiplayer Online.
+  ~ Android Application
+  ~
+  ~ Curso 2012-2013
+  ~
+  ~ Este software ha sido desarrollado integramente para la asignatura 'Projecte
+  ~ Integrat de Software' en la Universidad de Barcelona por los estudiantes
+  ~ Pablo Martínez Martínez, Albert Folch, Xavi Moreno y Aaron Negrín.
+  -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res/com.ub.pis"
@@ -25,6 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:background="@drawable/pause"/>
+    <!--
     <TextView
         android:id="@+id/stageView"
         android:layout_width="50dp"
@@ -34,7 +47,7 @@
         android:layout_margin="7dp"
         android:background="@drawable/stagecircle" 
         android:textColor="#000000"
-        android:gravity="center"/>
+        android:gravity="center"/> -->
     
     <com.ub.pis.views.AttackButton 
         android:id="@+id/buttonatck"
