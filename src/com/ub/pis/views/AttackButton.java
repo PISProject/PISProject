@@ -151,6 +151,7 @@ public class AttackButton extends View {
      *
      * @param cooldown
      */
+
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
