@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.ub.pis.R;
 import com.ub.pis.clientsupport.Client;
 import com.ub.pis.clientsupport.Client.OnServerListener;
@@ -183,7 +184,8 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 		}
 	}
 
-	/*Funcions del server*/
+
+    /*Funcions del server*/
 	@Override
 	public void updateMyPlayer(final Player p){
 		lifeProgress.setProgress(p.vida);
@@ -270,4 +272,11 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 		});
 
 	}
+
+    @Override
+    public void gameOver() {
+        iniciarActivity(GameOverActivity.class);
+        finish();
+        World.destroy();
+    }
 }

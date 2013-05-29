@@ -14,6 +14,7 @@ package com.ub.pis.clientsupport;
 
 import android.util.Log;
 import android.util.SparseArray;
+
 import com.ub.pis.clientsupport.Client.OnServerListener;
 import com.ub.pis.game.World;
 
@@ -48,7 +49,7 @@ public class GameService {
 		int function = Integer.parseInt(splitted[0]);
 		switch (function) {
 		case JUEGO_ACABADO:
-
+            if(listener!=null) listener.gameOver();
 			break;
 		case STREAMING:
 			parseGame(splitted[1]);

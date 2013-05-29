@@ -12,11 +12,11 @@
 
 package com.ub.pis.activities.models;
 
-import java.io.Serializable;
-
 import android.util.SparseArray;
 
 import com.ub.pis.R;
+
+import java.io.Serializable;
 
 /**
  * Clase Escenari, per poder representar el Listview de objectes tipus Escenari.
@@ -40,8 +40,8 @@ public class Escenari implements Serializable{
 		
 		mapes.put(1, new int[]{R.raw.ground,R.drawable.grasstex});
 		mapes.put(2, new int[]{R.raw.ground2,R.drawable.ground2tex});
-		mapes.put(3, new int[]{R.raw.escenari_muntanya,R.drawable.palaciotex});
-		mapes.put(4, new int[]{R.raw.escenari_muntanya,R.drawable.escenario_muntanyatex});
+        mapes.put(3, new int[]{R.raw.muntanya,R.drawable.muntanyatex});
+		mapes.put(4, new int[]{R.raw.muntanya,R.drawable.muntanyatex});
 
 		return mapes.get(id);
 	}
@@ -53,7 +53,6 @@ public class Escenari implements Serializable{
 	public int refText;
     
     public Escenari(int id, int numPlayers, boolean bloqueado) {
-        super();
         this.id = id;
         this.numPlayers = numPlayers;
         this.bloqueado = bloqueado;

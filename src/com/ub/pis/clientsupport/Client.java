@@ -12,10 +12,10 @@
 
 package com.ub.pis.clientsupport;
 
-import java.util.ArrayList;
-
 import com.ub.pis.activities.models.Escenari;
 import com.ub.pis.game.UserData;
+
+import java.util.ArrayList;
 
 public class Client {
 	
@@ -156,6 +156,7 @@ public class Client {
 		public void removeActor(int id);
 		public void removeMyPlayer();
 		public void attack(int uid, int attackid);
+        public void gameOver();
     }
     
     
