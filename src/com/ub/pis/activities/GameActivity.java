@@ -38,7 +38,6 @@ import com.ub.pis.views.JoystickView;
 import com.ub.pis.views.JoystickView.OnJoystickChangeListener;
 import com.ub.pis.views.MyLifeProgressBar;
 
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -71,32 +70,28 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 		pauseButton = (Button) findViewById(R.id.pausebutton);
 		gameView = (GameView) findViewById(R.id.game_view);
 		lifeProgress = (MyLifeProgressBar) findViewById(R.id.life_progress);
-		
-		c = Client.getInstance(false);
-		
-		ArrayList<UserData> actors = (ArrayList<UserData>) getIntent().getExtras().getSerializable("actors");
-		for (int i = 0; i < actors.size(); i++) {
-			if(c.getMyId() == actors.get(i).id) World.addPlayer(actors.get(i), gameView);
-			else World.add(actors.get(i), gameView);
-		}
-		
-		lifeProgress.setProgress(100);
-		
-		//spells = new AttackButton[3];
-		
-		
-		
-		/*Damos inicio al thread que leerá del Server todos los datos relacionados con el mapa*/
-		c.startThreadGame(this);
-		
-		/*Les habilitats van de dreta a esquerra respecte com es veuen en pantalla*/
+        //spells = new AttackButton[3];
+        /*Les habilitats van de dreta a esquerra respecte com es veuen en pantalla*/
         /*
 		int[] refs = {R.id.ability1, R.id.ability2, R.id.ability3};
 		for (int i = 0; i < spells.length; i++) {
 			spells[i] = (AttackButton) findViewById(refs[i]);
 		}*/
-		//stage = (TextView) findViewById(R.id.stageView);
+        //stage = (TextView) findViewById(R.id.stageView);
+
+		c = Client.getInstance(false);
 		
+		/*ArrayList<UserData> actors = (ArrayList<UserData>) getIntent().getExtras().getSerializable("actors");
+		for (int i = 0; i < actors.size(); i++) {
+			if(c.getMyId() == actors.get(i).id) World.addPlayer(actors.get(i), gameView);
+			else World.add(actors.get(i), gameView);
+		}*/
+
+        /*Damos inicio al thread que leerá del Server todos los datos relacionados con el mapa*/
+        c.startThreadGame(this);
+		
+		lifeProgress.setProgress(100);
+
 		attckButton.setImage(R.drawable.espada2);
 		
 		/*Carregar aquÃ­ les imatges de les tres habilitats que tÃ© un player*/
@@ -192,15 +187,20 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 	@Override
 	public void updateMyPlayer(final Player p){
 		lifeProgress.setProgress(p.vida);
-		gameView.queueEvent(new Runnable() {
-			@Override
-			public void run() {
-				Actor a = World.getPlayer();
-				a.moveTo(p.pos[0], p.pos[1]);
-				Log.i("MI VIDA ",""+p.vida);
-				a.setLife(p.vida);
-			}
-		});
+        Integer b = World.getActorsFlags().get(p.id);
+        if(b==null) {
+            int[] model = Player.getModel(p.modelo);
+            World.addPlayer(new UserData(p.nombre, p.id,model[0],model[1]),gameView);
+        }else{
+            gameView.queueEvent(new Runnable() {
+                @Override
+                public void run() {
+                    Actor a = World.getPlayer();
+                    a.moveTo(p.pos[0], p.pos[1]);
+                    a.setLife(p.vida);
+                }
+            });
+        }
 	}
 
 	@Override
@@ -211,7 +211,6 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 				Actor a = World.getActors().get(p.id);
 				if(a!=null) {
 					a.moveTo(p.pos[0], p.pos[1]);
-					Log.i("VIDA id: "+p.id,""+p.vida);
 					a.setLife(p.vida);
 				}
 			}
@@ -221,16 +220,8 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 	@Override
 	public void createActor(final Player p) {
 		Log.i("Actor creado con id: ", p.id+"");
-		if(cont == 0){
-			World.add(new UserData("Monstre", p.id, R.raw.vampire3, R.drawable.vampiretex), gameView);
-		}else if(cont ==1) {
-			World.add(new UserData("Monstre", p.id, R.raw.malote2, R.drawable.malotetex), gameView);
-		}else if(cont == 2){
-			World.add(new UserData("Monstre", p.id, R.raw.mosquito, R.drawable.mosquitotex), gameView);
-		}else{
-            World.add(new UserData("Monstre", p.id, R.raw.caballero4, R.drawable.knighttexture), gameView);
-        }
-		cont++;
+        int[] model = Player.getModel(p.modelo);
+        World.add(new UserData(p.nombre, p.id, model[0], model[1]), gameView);
 	}
 	
 	@Override

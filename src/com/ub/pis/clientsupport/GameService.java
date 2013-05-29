@@ -12,13 +12,12 @@
 
 package com.ub.pis.clientsupport;
 
-import java.util.ArrayList;
-
 import android.util.Log;
 import android.util.SparseArray;
-
 import com.ub.pis.clientsupport.Client.OnServerListener;
 import com.ub.pis.game.World;
+
+import java.util.ArrayList;
 
 public class GameService {
 
@@ -87,11 +86,12 @@ public class GameService {
 
             p = new Player();
             p.id = Integer.parseInt(playerAttribut[0]);
-            p.modelo = Integer.parseInt(playerAttribut[1]);
-            p.vida = Integer.parseInt(playerAttribut[2]);
+            p.nombre = playerAttribut[1];
+            p.modelo = Integer.parseInt(playerAttribut[2]);
+            p.vida = Integer.parseInt(playerAttribut[3]);
             p.pos = new float[2];
-            p.pos[0] = Float.parseFloat(playerAttribut[3]);
-            p.pos[1] = Float.parseFloat(playerAttribut[4]);
+            p.pos[0] = Float.parseFloat(playerAttribut[4]);
+            p.pos[1] = Float.parseFloat(playerAttribut[5]);
 
             /*Añadimos el player en la lista*/
             players.put(p.id, p);

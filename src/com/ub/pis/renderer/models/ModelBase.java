@@ -12,8 +12,6 @@
 
 package com.ub.pis.renderer.models;
 
-import android.util.Log;
-
 import com.ub.pis.renderer.opengl.Mesh;
 import com.ub.pis.renderer.opengl.ShaderProgram;
 import com.ub.pis.renderer.opengl.Texture;
@@ -66,11 +64,8 @@ public abstract class ModelBase extends ModelNode implements IRendereable{
 	}
 	
 	public void setTexture(Texture texture) {
-		Log.i("t1", ""+this.texture);
 		this.texture = texture;
-		Log.i("t2",""+this.texture);
 		if (initialized) {
-			Log.i("","Entroooo");
 			this.texture.initialize();
 		}
 	}

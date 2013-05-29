@@ -28,7 +28,7 @@ public class Protocol {
     //////////////////
     //IP & PORT
     //////////////////
-    public static final String IP = "81.38.161.107"; //37.14.151.198 81.38.161.107 192.168.43.6
+    public static final String IP = "37.14.122.98"; //37.14.122.98 81.38.161.107 192.168.43.6
     public static final int PORT = 5050;
 
     //////////////////
