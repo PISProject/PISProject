@@ -22,6 +22,8 @@ import com.ub.pis.R;
 import com.ub.pis.activities.models.PlayerStats;
 import com.ub.pis.views.MyTableLayout;
 
+import java.util.ArrayList;
+
 /**
  * Actividad que aparece al finalizar el juego.
  * 
@@ -43,19 +45,23 @@ public class GameOverActivity extends BaseActivity {
 		quit_button = (Button)findViewById(R.id.quit_button);
 		table = (MyTableLayout) findViewById(R.id.tableLayout2);
 		
-		PlayerStats[] players = {
-				new PlayerStats("Xavi", 134567878, 342345),
-				new PlayerStats("Aarón", 1244, 342),
-				new PlayerStats("Albert", 897, 134),
-				new PlayerStats("Pablo", 342, 87)
-		};
-		
+		ArrayList<PlayerStats> array = (ArrayList<PlayerStats>) getIntent().getExtras().getSerializable("stats");
+		boolean victory = getIntent().getExtras().getBoolean("victory");
+
+
 		String[] headers = {
-				getString(R.string.highscores_noms),
-				getString(R.string.highscores_puntuacio),
-				getString(R.string.highscores_monedes)
+				"Name",
+				"Deaths",
+				"Kills"
 		};
-		
+
+        //Log.i("array", array.toString());
+        PlayerStats[] players = new PlayerStats[array.size()];
+        for (int i = 0; i < array.size(); i++) {
+            PlayerStats p = array.get(i);
+            players[i] = p;
+        }
+
 		table.setTable(headers, players);
 		
 		quit_button.setOnClickListener(new OnClickListener() {

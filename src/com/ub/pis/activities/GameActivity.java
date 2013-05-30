@@ -13,6 +13,7 @@
 package com.ub.pis.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,6 +26,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ub.pis.R;
+import com.ub.pis.activities.models.PlayerStats;
 import com.ub.pis.clientsupport.Client;
 import com.ub.pis.clientsupport.Client.OnServerListener;
 import com.ub.pis.clientsupport.Player;
@@ -39,6 +41,7 @@ import com.ub.pis.views.JoystickView;
 import com.ub.pis.views.JoystickView.OnJoystickChangeListener;
 import com.ub.pis.views.MyLifeProgressBar;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -231,7 +234,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(getApplicationContext(), "Player "+id+" se ha desconectado", Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getApplicationContext(), "Player "+id+" se ha desconectado", Toast.LENGTH_SHORT).show();
 			}
 		});
 		gameView.queueEvent(new Runnable() {
@@ -248,7 +251,7 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(getApplicationContext(), "Has muerto", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Has muerto, revivirás en 20 segundos", Toast.LENGTH_LONG).show();
                 lifeProgress.setProgress(0);
 			}
 		});
@@ -274,8 +277,15 @@ public class GameActivity extends BaseActivity implements OnServerListener{
 	}
 
     @Override
-    public void gameOver() {
-        iniciarActivity(GameOverActivity.class);
+    public void gameOver(boolean victory, ArrayList<PlayerStats> stats) {
+
+        c.closeGameThread();
+
+        Intent i = new Intent(getApplicationContext(), GameOverActivity.class);
+        i.putExtra("victory", victory);
+        i.putExtra("stats", stats);
+        startActivity(i);
+
         finish();
         World.destroy();
     }

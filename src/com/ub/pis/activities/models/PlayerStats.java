@@ -12,14 +12,15 @@
 
 package com.ub.pis.activities.models;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 
 import com.ub.pis.views.CustomTextView;
 import com.ub.pis.views.MyTableLayout.ITable;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Clase que implementa ITable i presenta en una taula les puntuacions que s'han tret en una partida.
@@ -28,15 +29,15 @@ import com.ub.pis.views.MyTableLayout.ITable;
  *
  */
 
-public class PlayerStats implements ITable{
+public class PlayerStats implements ITable, Serializable{
 	private String name;
-	private int points;
-	private int coins;
+	private int deaths;
+	private int kills;
 	
-	public PlayerStats(String name, int points, int coins) {
+	public PlayerStats(String name, int deaths, int kills) {
 		this.name = name;
-		this.points = points;
-		this.coins = coins;
+		this.deaths = deaths;
+		this.kills = kills;
 	}
 
 	@Override
@@ -48,14 +49,17 @@ public class PlayerStats implements ITable{
 		views.add(t);
 		t = new CustomTextView(c);
 		t.setGravity(Gravity.CENTER);
-		t.setText(points+"");
+		t.setText(deaths+"");
 		views.add(t);
 		t = new CustomTextView(c);
 		t.setGravity(Gravity.CENTER);
-		t.setText(coins+"");
+		t.setText(kills+"");
 		views.add(t);
 		return views;
 	}
-	
-	
+
+    @Override
+    public String toString() {
+        return name+","+kills+","+deaths;
+    }
 }

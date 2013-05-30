@@ -40,7 +40,7 @@ public class Escenari implements Serializable{
 		
 		mapes.put(1, new int[]{R.raw.ground,R.drawable.grasstex});
 		mapes.put(2, new int[]{R.raw.ground2,R.drawable.ground2tex});
-        mapes.put(3, new int[]{R.raw.muntanya,R.drawable.muntanyatex});
+        mapes.put(3, new int[]{R.raw.palacio_db2,R.drawable.palaciotex});
 		mapes.put(4, new int[]{R.raw.muntanya,R.drawable.muntanyatex});
 
 		return mapes.get(id);

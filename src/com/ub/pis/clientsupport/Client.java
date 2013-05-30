@@ -13,6 +13,7 @@
 package com.ub.pis.clientsupport;
 
 import com.ub.pis.activities.models.Escenari;
+import com.ub.pis.activities.models.PlayerStats;
 import com.ub.pis.game.UserData;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Client {
 	private static Client CLIENT;
 	
 	private int myId;
+    private ThreadGame t_game;
 	
 	/**
 	 * Función estática que hace referencia a un objeto de tipo Client.
@@ -128,8 +130,8 @@ public class Client {
     public void startThreadGame(OnServerListener listener) {
     	/*Activo el Thread que estará leyendo constantemente del servidor*/
     	protocol.setListener(listener);
-        ThreadGame threadGame = new ThreadGame(protocol);
-        threadGame.start();
+        t_game = new ThreadGame(protocol);
+        t_game.start();
     }
     
     public void moveTo(int angulo){
@@ -148,7 +150,13 @@ public class Client {
         protocol.close();
         CLIENT = null;
     }
+
+    public void closeGameThread() {
+        t_game.closeThread();
+    }
+
     
+
     public interface OnServerListener {
 		public void updateMyPlayer(Player p);
 		public void updateOtherPlayer(Player p);
@@ -156,7 +164,7 @@ public class Client {
 		public void removeActor(int id);
 		public void removeMyPlayer();
 		public void attack(int uid, int attackid);
-        public void gameOver();
+        public void gameOver(boolean victory, ArrayList<PlayerStats> stats);
     }
     
     

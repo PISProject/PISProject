@@ -28,7 +28,7 @@ public class Protocol {
     //////////////////
     //IP & PORT
     //////////////////
-    public static final String IP = "81.38.161.107"; //37.14.122.98 81.38.161.107 192.168.43.6
+    public static final String IP = "37.14.122.98"; //37.14.122.98 81.38.161.107 192.168.43.6
     public static final int PORT = 5050;
 
     //////////////////
@@ -199,14 +199,13 @@ public class Protocol {
             //TODO  here
 			String trama  = in.readUTF();
 			//Parsear lo que me diga y meterlo en el game object.
-			if(gameService != null) gameService.parseTrama(trama);
+			if(gameService != null) return gameService.parseTrama(trama);
 			//System.out.println("LISTENER: "+listener);
-			return true;
 		} catch (IOException e) {
 			//Se ha cerrado la conexión con el servidor por alguna razón.
 			return false;
 		}
-        
+        return true;
     }
 
     /**

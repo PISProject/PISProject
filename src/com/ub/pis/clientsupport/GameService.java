@@ -15,6 +15,7 @@ package com.ub.pis.clientsupport;
 import android.util.Log;
 import android.util.SparseArray;
 
+import com.ub.pis.activities.models.PlayerStats;
 import com.ub.pis.clientsupport.Client.OnServerListener;
 import com.ub.pis.game.World;
 
@@ -44,20 +45,20 @@ public class GameService {
 		this.listener = listener;
 	}
 
-	public void parseTrama(String trama) {
+	public boolean parseTrama(String trama) {
 		String[] splitted = trama.split("[|]");
 		int function = Integer.parseInt(splitted[0]);
 		switch (function) {
 		case JUEGO_ACABADO:
-            if(listener!=null) listener.gameOver();
-			break;
+            return gameOver(splitted[1]);
 		case STREAMING:
 			parseGame(splitted[1]);
-			break;
+            return true;
 
 		default:
 			break;
 		}
+        return true;
 	}
 
 
@@ -148,7 +149,26 @@ public class GameService {
 		}
     }
 
+    private boolean gameOver(String seq) {
+        ArrayList<PlayerStats> stats;
+        boolean victory;
+        ArrayList<String> lists = readLists(seq);
+        ArrayList<String[]> puntuacions;
+        victory = lists.get(0).equals("1");
+        puntuacions = readSequence(lists.get(1));
+        stats = new ArrayList<PlayerStats>();
+        String nombre;
+        int death, kills;
+        for (int i=0;i<puntuacions.size();i++) {
+            nombre = puntuacions.get(i)[0];
+            death = Integer.parseInt(puntuacions.get(i)[1]);
+            kills = Integer.parseInt(puntuacions.get(i)[2]);
+            stats.add(new PlayerStats(nombre,death,kills));
+        }
 
+        listener.gameOver(victory,stats);
+        return false;
+    }
 
 	private ArrayList<String[]> readSequence(String seq) {
 		ArrayList<String[]> out = new ArrayList<String[]>();
@@ -163,8 +183,9 @@ public class GameService {
 
 	private ArrayList<String> readLists(String seq) {
 		String[] splitted = seq.split("[/]");
-		ArrayList<String> out = new ArrayList<String>();
-		for (String elem : splitted) {
+		ArrayList<String> out;
+        out = new ArrayList<String>();
+        for (String elem : splitted) {
 			out.add(elem);
 		}
 		return out;

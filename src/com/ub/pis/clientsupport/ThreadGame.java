@@ -14,6 +14,7 @@ package com.ub.pis.clientsupport;
 
 public class ThreadGame extends Thread{
 	private Protocol protocol;
+    private boolean isAlive;
     
     public ThreadGame (Protocol protocol){
         this.protocol = protocol;
@@ -22,8 +23,13 @@ public class ThreadGame extends Thread{
     @Override
     public void run() {
     	boolean correct;
+        isAlive = true;
     	do{
             correct = protocol.readMap();
-        } while(correct);
+        } while(correct || isAlive);
+    }
+
+    public void closeThread() {
+        isAlive = false;
     }
 }

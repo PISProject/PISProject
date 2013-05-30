@@ -12,10 +12,7 @@
 
 package com.ub.pis.activities;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +29,9 @@ import com.ub.pis.clientsupport.Client;
 import com.ub.pis.dialogs.LoadingDialog;
 import com.ub.pis.game.UserData;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * Activity donde se escoge el escenario al cual se quiere jugar.
  * 
@@ -45,7 +45,7 @@ public class ChooseStageActivity extends BaseActivity {
 	private Escenari[] data;
 	
 	private boolean isInQueue;
-	private ProgressDialog pDialog;
+    private Context c;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,47 +54,48 @@ public class ChooseStageActivity extends BaseActivity {
         setContentView(R.layout.activity_choose_stage);
        
         listView1 = (ListView)findViewById(R.id.list);
-        
+
         isInQueue = false;
-        pDialog = new ProgressDialog(this);
-		pDialog.setCancelable(false);
-		pDialog.setMessage(getString(R.string.loading_text));
+
+        c = this;
+
         
         
-        listView1.setOnItemClickListener(new OnItemClickListener(){
-            @Override 
-            public void onItemClick(AdapterView<?> adapter, View arg1,final int position, long arg3){
-	            	if(data[position].bloqueado) Toast.makeText(getApplicationContext(), "Escenario bloqueado", Toast.LENGTH_SHORT).show();
-	            	else {
-	            		if(isInQueue) return; 
-	    				isInQueue = true;
-	    				final LoadingDialog dialog = new LoadingDialog();
-	    		        dialog.show(getSupportFragmentManager(), "fragment_loading_dialog");
-	    				new Thread(new Runnable() {
-	    					@Override
-	    					public void run() {
-	    						Client c = Client.getInstance(false);
-	    						if(c!=null) {
-	    							ArrayList<UserData> actors = c.joinQueue(data[position].id);
-	    							isInQueue = false;
-	    							if(actors == null) {
-	    								dialog.dismiss();
-	    								return;
-	    							}
-	    							Intent i = new Intent(getApplicationContext(), LoadingGameActivity.class);
-	    							i.putExtra("actors", (Serializable)actors);
-	    							i.putExtra("escenari", (Serializable)data[position]);
-	    							startActivity(i);
-	    							finish();
-	    						}
-	    					}
-	    				}).start();
+        listView1.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View arg1, final int position, long arg3) {
+                if (data[position].bloqueado)
+                    Toast.makeText(getApplicationContext(), "Escenario bloqueado", Toast.LENGTH_SHORT).show();
+                else {
+                    if (isInQueue) return;
+                    isInQueue = true;
+                    final LoadingDialog dialog = new LoadingDialog();
+                    dialog.show(getSupportFragmentManager(), "fragment_loading_dialog");
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Client c = Client.getInstance(false);
+                            if (c != null) {
+                                ArrayList<UserData> actors = c.joinQueue(data[position].id);
+                                isInQueue = false;
+                                if (actors == null) {
+                                    dialog.dismiss();
+                                    return;
+                                }
+                                Intent i = new Intent(getApplicationContext(), LoadingGameActivity.class);
+                                i.putExtra("actors", (Serializable) actors);
+                                i.putExtra("escenari", (Serializable) data[position]);
+                                startActivity(i);
+                                finish();
+                            }
+                        }
+                    }).start();
 	            		/*iniciarActivity(LoadingGameActivity.class);
 	            		finish();*/
-	            	}
+                }
             }
         });
-        pDialog.show();
+
         new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -111,7 +112,6 @@ public class ChooseStageActivity extends BaseActivity {
 						}else{
 							Toast.makeText(getApplicationContext(), "Error con el servidor", Toast.LENGTH_SHORT).show();
 						}
-						pDialog.dismiss();
 					}
 				});
 			}
